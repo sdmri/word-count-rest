@@ -19,7 +19,7 @@ Executing Service :
 		
 	This creates the war inside /target. Deploy the war on any web server (tomcat, jetty etc.)
     
-	REST endpoint to query for occurences of a word -> /<context-path>/api/wc?query=<word>
+	REST endpoint to query for occurences of a word -> /(context-path)/api/wc?query=(word)
 
 2. Running using embedded jetty plugin:
   --------------------------------------
@@ -27,4 +27,4 @@ Executing Service :
    
    Use command :-  mvn jetty:run
    
-   REST endpoint to query for occurences of a word -> /api/wc?query=<word>
+   REST endpoint to query for occurences of a word -> /api/wc?query=(word)
