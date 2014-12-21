@@ -49,7 +49,9 @@ public class WcService {
 					// in a line
 					String[] words = line.split(WORD_DELIMITER);
 					for (String word : words) {
-						Integer wordCount = cachedWordCount.get(word);
+						// Since search is case-insensitive
+						String wordAllLowercase = word.toLowerCase();
+						Integer wordCount = cachedWordCount.get(wordAllLowercase);
 						if (wordCount == null) {
 							// First occurrence of word text
 							wordCount = 1;
@@ -57,7 +59,7 @@ public class WcService {
 							// Increment occurrence of existing word
 							wordCount++;
 						}
-						cachedWordCount.put(word, wordCount);
+						cachedWordCount.put(wordAllLowercase, wordCount);
 					}
 				}
 			} catch (IOException e) {
@@ -79,7 +81,7 @@ public class WcService {
 		if (wordToSearchFor == null || wordToSearchFor.isEmpty()) {
 			throw new IllegalArgumentException("Search string cannot be null");
 		}
-		return cachedWordCount.get(wordToSearchFor) != null ? cachedWordCount
-				.get(wordToSearchFor) : 0;
+		return cachedWordCount.get(wordToSearchFor.toLowerCase()) != null ? cachedWordCount
+				.get(wordToSearchFor.toLowerCase()) : 0;
 	}
 }
